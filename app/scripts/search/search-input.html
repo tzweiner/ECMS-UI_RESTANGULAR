@@ -1,0 +1,24 @@
+<div class="search-wrapper">
+    <form role="form" name="queryForm" ng-submit="submitQuery(state.searchQuery)" novalidate>
+        <div class="row">
+            <div class="col-lg-12 search-box">
+                <div class="input-group">
+                    <textarea fit-content-input="" rows="3" value="{{state.searchQuery}}" ng-model="state.searchQuery" placeholder="Search ECMS content for..." name="searchQueryInput" class="form-control" ng-keydown="submitOnEnterKey($event, state.searchQuery)"></textarea>
+                    <div class="pull-right text-center">
+                        <button class="btn btn-default" type="submit">
+                            <span class="uxf-icon uxf-search" aria-hidden="true"></span> Search
+                        </button>
+                        <br />
+                        <a href="#" ng-click="$event.preventDefault(); clearForm()">Clear Search</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div ng-show="state.currentView !== 'search.doc'">
+        <div class="alert alert-danger" ng-show="state.errorMessage" ng-bind="state.errorMessage">{{state.errorMessage}}</div>
+    </div>
+
+</div>

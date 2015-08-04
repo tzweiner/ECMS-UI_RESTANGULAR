@@ -1,0 +1,5 @@
+<div ng-controller="SearchCtrl">
+    <div ui-view="input" ng-show="state.currentView === 'search.input' || state.currentView === 'search.results'"></div>
+    <div ui-view="results" ng-show="state.currentView === 'search.results'"></div>
+    <div ui-view="doc" ng-show="state.currentView === 'search.doc'"></div>
+</div>

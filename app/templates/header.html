@@ -1,0 +1,100 @@
+<div class="navbar navbar-inverse">
+    <div class="navbar-header">
+        <button data-toggle="collapse" type="button" class="navbar-toggle">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <ul class="nav navbar-nav">
+            <li><a ui-sref="search.input" class="navbar-brand diagonal"><img src="images/start-icon.png" alt=""
+                                                                             style="width:24px; height:24px;"/></a></li>
+            <li>
+                <div class="navbar-brand product-name">
+                    <div class="pq-logo"></div>
+                    <a ui-sref="search.input">Editorial Content Management System</a></div>
+            </li>
+        </ul>
+    </div>
+    <nav id="teal-bar" role="navigation" class="navbar-collapse bs-navbar-collapse collapse">
+        <ul ng-if="userLoggedIn" class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                <button class="btn btn-default dropdown-toggle user-icon" type="button" id="dropdownMenu1"
+                        data-toggle="dropdown" aria-expanded="true" title="{{user.firstName}} {{user.lastName}}">
+                    <span class="uxf-icon uxf-user"></span>
+                    <span class="uxf-icon uxf-down-caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a ui-sref="login" ng-click="signOut()">Sign out</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="https://proquest.atlassian.net/wiki/display/TKB/ECMS+User+Documentation" target="_blank"><span
+                    class="uxf-icon uxf-help-circle"></span></a>
+            </li>
+        </ul>
+
+        <div id="gray-bar" class="nav navbar-nav navbar-below" ng-if="userLoggedIn">
+            <ul class="nav navbar-nav">
+                <li ng-class="state.currentView === 'search.input' ? 'active' : ''"><a ui-sref="search.input"
+                                                                                       ng-click="goTo('search.input')">Home</a>
+                </li>
+                <li ng-class="!state.searchResults.length ? 'disabled' : state.currentView === 'search.results' ? 'active' : ''">
+                    <a ui-sref="search.results"
+                       ng-click="!state.searchResults.length ? $event.preventDefault() : goTo('search.results')">Search</a>
+                </li>
+                <li ng-class="!state.currentDocument.id ? 'disabled' : state.currentView === 'search.doc' ? 'active' : ''">
+                    <a ui-sref="search.doc({ id: state.currentDocument.id })"
+                       ng-click="!state.currentDocument.id ? $event.preventDefault() : goTo('search.doc')">Document</a></li>
+            </ul>
+
+            <!--<ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Option 5</a></li>
+                <li><a href="#">Option 6</a></li>
+            </ul>-->
+        </div>
+    </nav>
+
+    <div class="action-bar-wrapper row" ng-show="state.showActionBar && state.currentDocument">
+        <!--ng-show="currentDoc.index" -->
+        <div class="col-md-9 col-sm-6 left-column">
+            <div class="col-md-7 col-sm-12">
+                <div class="row documentPagination">
+                    <h5>
+                        <button type="button" ng-click="action('goPrev')"
+                                ng-disabled="(state.currentDocument.index === null || state.currentDocument.index === 1 || loading)">
+                            <span class="uxf-icon uxf-left-open bigger"
+                                  title="{{state.currentDocument.index !== 1 ? 'Previous' : ''}}"></span>
+                        </button>
+                        <span>{{state.currentDocument.index}} of {{state.totalItems}}</span>
+                        <button type="button" ng-click="action('goNext')"
+                                ng-disabled="(state.currentDocument.index === null || state.currentDocument.index === state.totalItems || loading)"><span
+                            class="uxf-icon uxf-right-open bigger"
+                            title="{{state.currentDocument.index !== state.totalItems ? 'Next' : ''}}"></span>
+                        </button>
+                    </h5>
+                </div>
+            </div>
+            <div class="col-md-5 col-sm-12 buttons-wrapper">
+                <button class="btn btn-default btn-sm" type="submit"
+                        ng-disabled="!state.dirtyRawXML"
+                        ng-click="action('updateDocument')" ng-disabled="loading"><span
+                    class="uxf-icon uxf-save"></span> Save
+                </button>
+                <button class="btn btn-secondary btn-sm" type="button" ng-click="action('validateDocument')" ng-disabled="loading"><span
+                    class="uxf-icon uxf-check"></span> Validate
+                </button>
+                <button class="btn btn-secondary btn-sm" type="button" ng-click="!action('reloadDocument')" ng-disabled="loading"><span
+                    class="uxf-icon uxf-counter-clockwise"></span> Reload
+                </button>
+
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6 text-right right-column">
+            <button class="btn btn-secondary btn-sm" type="button" ng-click="action('closeDocument')" ng-disabled="loading"><span
+                class="uxf-icon uxf-close"></span>
+                Exit
+            </button>
+        </div>
+    </div>
+</div>

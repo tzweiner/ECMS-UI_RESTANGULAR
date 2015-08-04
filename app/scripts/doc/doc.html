@@ -1,0 +1,76 @@
+<form name="editorForm" id="editorForm">
+    <div class="alert-wrapper" ng-class="(statusAlert.statusClass !== null ? 'fade in' : 'fade out')" ng-if="statusAlert.statusClass">
+        <div class="alert" ng-class="statusAlert.statusClass">
+            <button ng-if="statusAlert.status === 'Error'" type="button" class="close" aria-label="Close" ng-click="dismissAlert()"><span
+                aria-hidden="true">&times;</span></button>
+            <div ng-repeat="message in statusAlert.alerts">
+                <strong>{{statusAlert.status}}!</strong> {{message}}
+            </div>
+        </div>
+    </div>
+
+    <div class="errorFeedback alert alert-danger" ng-class="state.errorBox ? 'slide-down' : 'hidden'">
+        <div ng-repeat="message in state.errorBox.alerts">
+            <strong>{{state.errorBox.status}}:</strong> {{message}}
+        </div>
+    </div>
+
+    <div>
+        <div class="pull-right margin-top" ng-if="lastModifiedDate">Last modified: <span class="dark-gray bold">{{lastModifiedDate}}</span><span
+            ng-if="lastModifiedUserId" class="dark-gray bold"> ({{lastModifiedUserId}})</span></div>
+        <tabset>
+            <tab heading="Raw XML View" select="getRawXML()">
+                <div id="rawXML" ui-codemirror="{ onLoad : codemirrorLoaded }" ng-model="state.rawXML"
+                     ui-codemirror-opts="editorOptions">{{state.rawXML}}
+                </div>
+            </tab>
+            <!-- Fielded View tab hidden temporarily -->
+            <!--<tab heading="Fielded View">
+                <div class="panel panel-default" style="margin-top: 5px;">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"
+                               ng-click="$event.preventDefault()">
+                                Bibliographic information
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <b>Bibliographic</b>
+
+                            <div class="row">
+                                <div class="col-sm-4 col-md-2">
+                                    Publication title:
+                                </div>
+                                <div class="col-sm-8 col-md-4">
+                                    Lorem ipsum title
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                </div>
+                                <div class="col-sm-2 col-md-1">
+                                    ISSN
+                                </div>
+                                <div class="col-sm-4 col-md-2">
+                                    1232-232-23232323
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-4 col-md-2">
+                                    Publication date:
+                                </div>
+                                <div class="col-sm-8 col-md-4">
+                                    2015-02-06
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </tab>-->
+        </tabset>
+    </div>
+</form>

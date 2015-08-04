@@ -1,0 +1,10 @@
+<div class="modal-x-close" ng-click="cancel('closeOnly')"><span class="uxf-icon uxf-close" aria-hidden="true"></span></div>
+<div class="modal-header">
+    <h3 class="modal-title {{class}}">{{title}}</h3>
+</div>
+<div class="modal-body">
+    {{body}}
+</div>
+<div class="modal-footer" ng-if="(buttons.length)">
+    <button class="btn {{button.class}}" ng-repeat="button in buttons" ng-click="outcome(button.outcome)">{{button.label}}</button>
+</div>

@@ -1,0 +1,15 @@
+<div class="footer-links-wrapper">
+    <ul>
+        <li ng-repeat="link in links" ng-show="showLink(link.route)">
+            <ng-include src="isExternal (link.route) ? 'external' : 'native'"></ng-include>
+        </li>
+    </ul>
+</div>
+
+<script type="text/ng-template" id="native">
+    <a ui-sref="{{link.route}}">{{link.label}}</a>
+</script>
+
+<script type="text/ng-template" id="external">
+    <a href="{{link.route}}" target="_blank">{{link.label}}</a>
+</script>
