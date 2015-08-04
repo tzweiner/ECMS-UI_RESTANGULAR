@@ -269,11 +269,13 @@ angular.module('ecmsEcmsUiApp')
             };
 
             // check if input is at least 3 characters - This validation must happen in the UI
-            var inputValidator = $this.isValidInput(input);
-            if (inputValidator.error) {
-                $rootScope.state.errorMessage = inputValidator.error;
-            }
-            else {  // input is ok, proceed with getting search results
+            // We can remove this checking as we can guarantee that it wil have at least 3 chars
+            // with the new validation in the UI, that's the reason I'm commenting the code.
+            //var inputValidator = $this.isValidInput(input);
+            //if (inputValidator.error) {
+            //    $rootScope.state.errorMessage = inputValidator.error;
+            //}
+            //else {  // input is ok, proceed with getting search results
                 $rootScope.state.searchQuery = input.trim();
                 $scope.spinnerOn();
 
@@ -307,7 +309,7 @@ angular.module('ecmsEcmsUiApp')
                         $scope.spinnerOff();
                     });
                 });
-            }
+            //}
         };
 
         /**
@@ -356,6 +358,9 @@ angular.module('ecmsEcmsUiApp')
          * For now, just check if input is not an empty string and at least 3 chars long
          * @param input
          * @returns {*}
+         *
+         * Plase check the search-input.html fragment to see how to validate min and max length and siplay messages!
+         *
          */
         $this.isValidInput = function (input) {
 
