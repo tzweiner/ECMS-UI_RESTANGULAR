@@ -140,22 +140,22 @@ angular.module('ecmsEcmsUiApp')
          ***********************************************/
 
             // App state defaults
-        $rootScope.state = $sessionStorage.lastState || {
-                showActionBar: false,
-                showNavBar: false,
-                currentView: 'login',
-                currentDocument: {},
-                errorBox: null,
-                errorMessage: null,
-                searchQuery: null,
-                searchResults: [],
-                pageNumber: 1,
-                pageSize: gridOptions.pageSize,
-                pageSizes: gridOptions.pageSizes,
-                totalItems: null,
-                rawXML: null,
-                dirtyRawXML: false
-            };
+        //$rootScope.state = $sessionStorage.lastState || {
+        //        showActionBar: false,
+        //        showNavBar: false,
+        //        currentView: 'login',
+        //        currentDocument: {},
+        //        errorBox: null,
+        //        errorMessage: null,
+        //        searchQuery: null,
+        //        searchResults: [],
+        //        pageNumber: 1,
+        //        pageSize: gridOptions.pageSize,
+        //        pageSizes: gridOptions.pageSizes,
+        //        totalItems: null,
+        //        rawXML: null,
+        //        dirtyRawXML: false
+        //    };
 
 
         /**
@@ -199,6 +199,7 @@ angular.module('ecmsEcmsUiApp')
         /*
          * This method will eventually check with the backend if any part of the document
          * has been changed. For now, it just relies on Angular's $pristine/$dirty for that
+         * for this work well it's needed to add the form that is $dirty, e.g.: $scope.<myFormName>.$dirty
          */
         $scope.isDirty = function () {
 
@@ -214,6 +215,13 @@ angular.module('ecmsEcmsUiApp')
          * - This should be in the doc controller
          * Actions performed in the action bar on document view change the state of the application
          * These are executed by DocCtrl (doc.js)
+         *
+         *
+         *
+         * This code could go to a Factory file, as it will just produce some call based on an input
+         *
+         *
+         *
          * @param action
          */
         $scope.action = function (action) {

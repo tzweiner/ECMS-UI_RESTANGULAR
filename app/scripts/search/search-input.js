@@ -11,6 +11,9 @@ angular.module('ecmsEcmsUiApp')
                                              $rootScope) {
 
         /**
+         *
+         * All clear forms could go to Factory or Service files and then be called from within the controller.
+         *
          * Clears login form of any input
          * This is called on click inside an input box, like after an error
          */
