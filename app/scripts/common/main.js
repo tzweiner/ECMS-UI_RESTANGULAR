@@ -21,6 +21,8 @@ angular.module('ecmsEcmsUiApp')
                                       searchErrorService,
                                       goTo,
                                       $q,
+                                      $timeout,
+                                      terminate,
                                       Restangular,
                                       getIPService) {
 
