@@ -328,7 +328,7 @@ angular.module('ecmsEcmsUiApp')
             for (var i in paramsValue) {
                 params += i + '=' + paramsValue[i] + '&';
             }
-            params = params.substring(0, params.length - 1);
+            params = params.substring(0, params.length - 1);    // remove last &
             return params;
         };
 
