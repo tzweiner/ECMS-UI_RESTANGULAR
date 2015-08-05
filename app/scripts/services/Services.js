@@ -108,7 +108,7 @@ app.service('updateDocumentInfo', function($rootScope) {
                     break;
                 }
             }
-        return scope;
+        //return scope;
     };
 });
 

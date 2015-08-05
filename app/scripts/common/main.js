@@ -293,7 +293,8 @@ angular.module('ecmsEcmsUiApp')
                   'X-ECMS-Session': ecmsSession.getSession(),
                     'Content-Type': 'application/json'
                 });
-                Restangular.all('v1/documents?' + $.param(paramsValue)).
+                //Restangular.all('v1/documents?' + $.param(paramsValue)).
+                Restangular.all('v1/documents?' + $this.makeParams(paramsValue)).
                     customGET('DocumentSearch').
                     then(function (resp) {
                             $scope.spinnerOff();
@@ -320,6 +321,15 @@ angular.module('ecmsEcmsUiApp')
                     });
                 });
             //}
+        };
+
+        $this.makeParams = function (paramsValue) {
+            var params = '';
+            for (var i in paramsValue) {
+                params += i + '=' + paramsValue[i] + '&';
+            }
+            params = params.substring(0, params.length - 1);
+            return params;
         };
 
         /**
